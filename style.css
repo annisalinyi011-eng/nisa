@@ -1,0 +1,140 @@
+/* ===== Warna tema (terang = default) ===== */
+:root {
+  --bg: #f3f6ff;
+  --teks: #1b2340;
+  --teks-lembut: #4d5878;
+  --kartu: #ffffff;
+  --garis: #d9e1f7;
+  --aksen: #2f5bd3;
+  --teks-aksen: #ffffff;
+}
+
+/* Tema gelap: class "gelap" ditambahkan ke <body> oleh JavaScript */
+body.gelap {
+  --bg: #0e1430;
+  --teks: #eef2ff;
+  --teks-lembut: #aab6dd;
+  --kartu: #182250;
+  --garis: #2b3970;
+  --aksen: #8fb0ff;
+  --teks-aksen: #0e1430;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--teks);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Lebar container memakai persen, dengan batas maksimum */
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* ===== Header ===== */
+header {
+  background: var(--aksen);
+  color: var(--teks-aksen);
+  padding: 28px 0;
+}
+header h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.3px; }
+header p  { margin: 4px 0 0; opacity: 0.9; }
+
+section { padding: 36px 0 0; }
+h2 { margin: 0 0 16px; font-size: 1.4rem; }
+
+/* ===== Profil ===== */
+.profil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  background: var(--kartu);
+  border: 1px solid var(--garis);
+  border-radius: 16px;
+  padding: 28px 20px;
+}
+
+/* Gambar tidak boleh melebihi lebar container */
+.profil img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--aksen);
+}
+.profil h2 { margin-bottom: 4px; }
+.jurusan { margin: 0 0 12px; color: var(--aksen); font-weight: 600; }
+#deskripsi { margin: 0; color: var(--teks-lembut); }
+
+/* ===== Tombol ===== */
+.tombol-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 18px;
+}
+button {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid var(--aksen);
+  background: var(--aksen);
+  color: var(--teks-aksen);
+}
+button.sekunder { background: transparent; color: var(--aksen); }
+button:hover { opacity: 0.88; }
+button:focus-visible { outline: 3px solid var(--teks); outline-offset: 2px; }
+
+/* ===== Kartu hobi & keterampilan ===== */
+/* Default (layar < 768px): 1 kolom */
+.daftar-kartu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.kartu {
+  background: var(--kartu);
+  border: 1px solid var(--garis);
+  border-left: 5px solid var(--aksen);
+  border-radius: 12px;
+  padding: 20px;
+}
+.kartu h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.kartu p  { margin: 0; color: var(--teks-lembut); }
+
+footer {
+  margin-top: 44px;
+  padding: 20px 0;
+  text-align: center;
+  color: var(--teks-lembut);
+  border-top: 1px solid var(--garis);
+}
+
+/* ===== Media Query: layar minimal 768px -> 3 kolom ===== */
+@media (min-width: 768px) {
+  .daftar-kartu { grid-template-columns: repeat(3, 1fr); }
+  .profil {
+    flex-direction: row;
+    text-align: left;
+    padding: 32px;
+    gap: 32px;
+  }
+  .profil img { width: 200px; max-width: 200px; flex-shrink: 0; }
+  .tombol-area { justify-content: flex-start; }
+  header h1 { font-size: 2.2rem; }
+}
